@@ -1,0 +1,48 @@
+---
+- name: Install docker and ELK
+  hosts: elk
+  become: true
+  tasks:
+    - name: resize vm memory
+      sysctl:
+        name: vm.max_map_count
+        value: '262144'
+        state: present
+        reload: yes
+
+    - name: Install Docker.io
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: use pip to install python3 docker container
+      pip:
+        name: docker
+        state: present
+
+    - name: Download and launch ELK container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
+
+    - name: enable docker services
+      systemd:
+        name: docker
+        enable: yes
+
+    - name: start service with systemd
+      systemd:
+        name: docker
+        enabled: yes
