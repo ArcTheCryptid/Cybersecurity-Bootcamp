@@ -13,8 +13,6 @@ These files have been tested and used to generate a live ELK deployment on Azure
   - [Ansible YAML Files](https://github.com/ArcTheCryptid/Cybersecurity-Bootcamp/tree/Ansible)
 
 
-  - [Other Linux Scripts](https://github.com/ArcTheCryptid/Cybersecurity-Bootcamp/tree/Ansible)
-
 
 This document contains the following details:
 - Description of the Topology
@@ -194,3 +192,6 @@ SSH into the control node and follow the steps below:
     - http://(insert IP address here):5601//app/kibana
       - for example, http://10.0.0.4:5601//app/kibana
 
+### Additional Resources
+
+  - [Other Linux Scripts We've Made In The Bootcamp](https://github.com/ArcTheCryptid/Cybersecurity-Bootcamp/tree/Ansible)
